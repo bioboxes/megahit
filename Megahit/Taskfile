@@ -1,2 +1,2 @@
-default: run "" /bbx/input/reads.fq.gz /bbx/output/
-no-mercy: run no-mercy /bbx/input/reads.fq.gz /bbx/output/
+default: export FLAGS=""  &&  run $READS
+no-mercy: export FLAGS="--no-mercy" &&  run $READS
