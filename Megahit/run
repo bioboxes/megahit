@@ -3,32 +3,23 @@
 # This script takes only 1 parameter ($1) which belongs to the given task 
 # (e.g. "default" coming from -> /Taskfile)
 #
-# The parameter is coming from the direct docker execution!
-# e.g. docker run {...} myDockerContainer default <- $1
-#
-# This script looks within the created Taskfile if the task (n this case default)
-# is implements and allowed.
-#
 # The Taskfile needs to get added within the Dockerfile to a position of
 # your choice!
 
 set -o errexit
-set -o xtrace
 set -o nounset
 
-# The first argument is the location of the reads in the container filesystem.
-# The will be present in a read-only directory
-READS=$2
+READS="$@"
 
 # The second argument is a directory with write-access where the final
 # assembly should be written to.
-DIR=$3
+OUTPUT_DIR=/bbx/output/bbx
 
 # The assembly should be written to the file "contigs.fa" in the output directory
-ASSEMBLY=$DIR/contigs.fa
+ASSEMBLY=$OUTPUT_DIR/contigs.fa
 
 # Setup logging
-LOG=$DIR/log.txt
+LOG=$OUTPUT_DIR/log.txt
 exec > >(tee ${LOG})
 exec 2>&1
 
@@ -38,8 +29,6 @@ cd ${TMP_DIR}
 MEM=$(echo "900 * $(grep MemTotal /proc/meminfo | awk '{print $2}')" | bc)
 MAX_READ_LENGTH=`zcat ${READS} | head -n2 | tail -1| wc -L`
 
-
-#python ${MEGAHIT_DIR}/megahit ${FLAGS} --cpu-only -r ${READS}  -m ${MEM} -l ${MAX_READ_LENGTH}
 python ${MEGAHIT_DIR}/megahit ${FLAGS} --cpu-only --input-cmd "zcat ${READS}" -m ${MEM} -l ${MAX_READ_LENGTH}
 
 cp ${TMP_DIR}/megahit_out/final.contigs.fa ${ASSEMBLY}
