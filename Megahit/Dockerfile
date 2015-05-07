@@ -30,10 +30,9 @@ RUN wget \
     --no-check-certificate \
     https://raw.githubusercontent.com/bioboxes/rfc/master/container/short-read-assembler/input_schema.yaml
 
-# Get tool
+# download megahit
 ENV MEGAHIT_DIR /tmp/megahit
-ENV MEGAHIT_TAR https://github.com/voutcn/megahit/archive/v0.1.2.tar.gz
-
+ENV MEGAHIT_TAR https://github.com/voutcn/megahit/archive/v0.2.1.tar.gz
 RUN mkdir ${MEGAHIT_DIR}
 RUN cd ${MEGAHIT_DIR} &&\
     wget --no-check-certificate ${MEGAHIT_TAR} --output-document - |\
@@ -46,7 +45,6 @@ RUN cd /usr/local/bin && wget --quiet --no-check-certificate ${CONVERT} && chmod
 ENV JQ http://stedolan.github.io/jq/download/linux64/jq
 RUN cd /usr/local/bin && wget --quiet --no-check-certificate ${JQ} && chmod u+x jq
 
-ADD Procfile /
 ADD run /usr/local/bin/
 ADD entry /usr/local/bin/
 
