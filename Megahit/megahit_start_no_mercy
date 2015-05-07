@@ -1,0 +1,1 @@
+docker run --volume="$(pwd)/input_data:/bbx/input:ro" --volume="$(pwd)/output_data:/bbx/output:rw" --rm megahit no-mercy

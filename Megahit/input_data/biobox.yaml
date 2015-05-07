@@ -1,0 +1,10 @@
+---
+version: "0.9.0"
+arguments:
+  - fastq:
+    - value: "/bbx/input/reads.fq.gz"
+      id: "pe_1"
+      type: paired
+  - fragment_size:
+    - value: 240
+      id: pe_1
