@@ -1,2 +1,0 @@
-default: run "" /bbx/input/reads.fq.gz /bbx/output/
-no-mercy: run no-mercy /bbx/input/reads.fq.gz /bbx/output/
