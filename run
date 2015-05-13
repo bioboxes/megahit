@@ -13,7 +13,7 @@ READS="$@"
 
 # The second argument is a directory with write-access where the final
 # assembly should be written to.
-OUTPUT_DIR=/bbx/output/bbx
+OUTPUT_DIR=/bbx/output
 
 # The assembly should be written to the file "contigs.fa" in the output directory
 ASSEMBLY=$OUTPUT_DIR/contigs.fa
