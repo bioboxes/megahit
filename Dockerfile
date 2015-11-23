@@ -1,5 +1,4 @@
-#FROM debian:wheezy
-FROM ubuntu:14.10
+FROM ubuntu:latest
 MAINTAINER Michael Barton, mail@michaelbarton.me.uk
 
 ENV PACKAGES wget make python g++ zlib1g-dev bc xz-utils
