@@ -1,0 +1,2 @@
+default: --min-count 2 --k-min 21 --k-max 99 --k-step 20
+no-mercy: --min-count 2 --k-min 21 --k-max 99 --k-step 20 --no-mercy
