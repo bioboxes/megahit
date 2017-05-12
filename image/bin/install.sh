@@ -7,12 +7,10 @@ RUNTIME="python-minimal libpython-stdlib libgomp1 zlib1g"
 apt-get update --yes
 apt-get install --yes --no-install-recommends ${NON_ESSENTIAL_BUILD}
 
-URL=https://github.com/voutcn/megahit/releases/download/v1.0.6/megahit_v1.0.6_LINUX_CPUONLY_x86_64-bin.tar.gz
-mkdir /usr/local/megahit
-wget ${URL} --quiet --output-document - \
-	| tar xzf - --directory /usr/local/megahit --strip-components=1
-ln -s /usr/local/megahit/megahit* /usr/local/bin
-
+# Fetch precompiled binary
+URL="https://github.com/voutcn/megahit/releases/download/${MEGAHIT_VERSION}/megahit_${MEGAHIT_VERSION}_LINUX_CPUONLY_x86_64-bin.tar.gz"
+fetch_archive.sh ${URL} megahit
+ln -s /usr/local/megahit/* /usr/local/bin/
 
 # Clean up dependencies
 apt-get autoremove --purge --yes ${NON_ESSENTIAL_BUILD}
