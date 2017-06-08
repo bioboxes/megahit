@@ -1,4 +1,4 @@
-FROM bioboxes/biobox-minimal-base@sha256:b73428dee585232350ce0e30d22f97d7d22921b74b81a4196d246ca2da3cb0f5
+FROM bioboxes/biobox-minimal-base@sha256:4620e3f97b448560203592a84c58012d4343bdbd81b115d3d66d0690dbb03f7b
 
 ENV MEGAHIT_VERSION v1.1.1
 
